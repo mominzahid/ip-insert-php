@@ -1,4 +1,4 @@
-<html lang="en-us>
+<html lang="en-us">
 <style>
 
     h2 {
@@ -95,7 +95,7 @@ if (sizeof($ips) > 0) {
     echo "</div>";
 
     $sql = "select id, ip_address, (select count(ip_address) from " . $table_name . " where i.ip_address::inet >= trim(ip_address)::inet and trim(ip_address_end)::inet >= i.ip_address::inet) as count
-    from alb_allowed_ip i order by count desc limit 10;";
+    from " . $table_name . " i order by count desc limit 10;";
 
     $result = pg_query($sql) or die('Query failed: ' . pg_last_error());
 
